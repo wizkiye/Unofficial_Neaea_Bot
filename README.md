@@ -12,6 +12,7 @@
 - Bot Token
 - Proxy (optional)
 
+
 ### 🛠 Configuration
 
 1. Copy `example.env` to `.env` and fill it with your credentials.
@@ -26,12 +27,12 @@
 
 ## ℹ️ Commands
 
-| Command | Description                                          |
-| ------- | ---------------------------------------------------- |
-| /start  | start the bot :)         |
-| /info | info about the bot                               |
-| /help | to get help                              |
-| /send_msg | to send message to users                        |
+| Command | Description                       |
+| ------- |-----------------------------------|
+| /start  | start the bot :)                  |
+| /info | info about the bot                |
+| /help | to get help                       |
+| /send_msg | to send message to users          |
 
 # Demo Bot
 <h4 align="center">
@@ -44,4 +45,12 @@
         <b>@Unofficial_Neaea_Bot</b>
     </a>
 </h4>
+
+###Currently this bot have<br>
+- 256+ Users
+- 5970+ Unique Searches
+
+## Made with ❤️ 
+- by [@wizkiye](https://t.me/wizkiye).
+      
 
