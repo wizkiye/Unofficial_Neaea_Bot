@@ -1,12 +1,12 @@
-from neaea.neaea import RegistrationNumberNotFound
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram import Client, filters, emoji
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from main import neaea
+from neaea.neaea import RegistrationNumberNotFound
 
 
 @Client.on_message(
-    filters.regex(r"\d{6}")
+    filters.regex(r"^\d{6}$")
 )
 async def reg_no(
         _: Client,
@@ -16,14 +16,14 @@ async def reg_no(
     try:
         result = await neaea.get_result(reg_no=reg_num)
     except RegistrationNumberNotFound:
-        await message.reply_text("RegistrationNumberNotFound")
+        await message.reply_text("Registration Number NotFound")
         return
     sub_text = ""
-    separetor = "﹍" * 15 + "\n"
+    separator = "﹍" * 15 + "\n"
     subjects = result.get_subjects()
     for subject in subjects:
         sub_text += f"**{subject.subject_name} ({subject.subject_abbr}) **: `{subject.mark}`\n"
-        sub_text += separetor
+        sub_text += separator
     text = f"""
 **Reg No**:  `{result.registration_number}`
 **Name**:    `{result.name}`
@@ -31,14 +31,24 @@ async def reg_no(
 **Gender**:  `{result.gender}`
 **Stream**:  `{result.stream}`
 **School**:   `{result.school}`
-{separetor}
+{separator}
                  **Exam Results**
-{separetor}
+{separator}
 {sub_text}
 
                   **Total**: **{result.total}**
     """
     await message.reply_text(
         text,
-        parse_mode="markdown"
+        parse_mode="markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        f"{emoji.LINK} Share!",
+                        switch_inline_query=str(result.registration_number)
+                    )
+                ]
+            ]
+        )
     )
