@@ -1,0 +1,5 @@
+Pyrogram~=1.4.7
+python-dotenv~=0.19.2
+motor~=2.5.1
+neaea~=1.0.0
+rich~=11.2.0
